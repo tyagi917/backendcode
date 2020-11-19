@@ -2,7 +2,7 @@ const userCollection=require('./models/usercollectionmodel.js');
 const orderCollection=require('./model/ordercollection.js');
 exports.restult=(req,res)=>
 {
-	orderCollection.aggregate([$group:{_id:"$userid",noofOrders:{$sum:1}},averageBillvalue:{$aug:"$subtotal"}]).exec((err,data)=>{
+	orderCollection.aggregate([{$group:{_id:"$userid",noofOrders:{$sum:1}},averageBillvalue:{$aug:"$subtotal"}}]).exec((err,data)=>{
 		if(err)
 		{
 			return res.status(400).json({
